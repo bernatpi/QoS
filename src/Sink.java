@@ -90,7 +90,7 @@ public class Sink {
     private void PacketLoss (int packet_Id, int packetId_previous){
         // si el paquet rebut no es el seguent
          if (packet_Id - packetId_previous > 1)
-             //s'han perdut tants paquets com la diferència de IDs menys 1
+             //s'han perdut tants paquets com la diferencia de IDs menys 1
              packetloss = packetloss + (packet_Id - packetId_previous) - 1;
     }
     
