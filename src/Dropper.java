@@ -9,24 +9,28 @@ public class Dropper {
     private int packetloss;
     private Queue queue; 
     
-    public Dropper(Scheduler sch){
+    public Dropper(Queue queue){
         packetloss = 0;
-        queue = new Queue(sch);
+        this.queue = queue;
     }
-    
-    public Dropper(long s, Scheduler sch){
-        packetloss = 0;
-        queue = new Queue(s, sch);
-    }
-    
+
+    //Arriba un paquet y si hi ha espai a la cua el posem, sino el descartem
     public void insertPacket(String packet) {
-        if (this.queue.getNumel() < this.queue.getSize())
+        if (this.queue.getNumel() < this.queue.getSize()){
             this.queue.addPacket(packet);
-        else 
+            System.out.println("\nDropper: Paquet " + packet + " posat en cua");
+        }
+        else{
             this.dropPacket();
+            System.out.println("\nDropper: Paquet " + packet + " descartat");
+        } 
     }
-    
+    //Si descartem un pacquet augmentem el contador
     public void dropPacket(){
         packetloss++;
+    }
+    
+    public int getPacketLoss(){
+        return this.packetloss;
     }
 }

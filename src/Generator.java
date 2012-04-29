@@ -28,7 +28,7 @@ public class Generator {
 	    int port = p;
             packet_Id = 0;
             rate = lambda;
-            simTime = 200;
+            simTime = 80;
             Traffic_class = new int[5];
             Traffic_class[0] = 0;
             Traffic_class[1] = 1;

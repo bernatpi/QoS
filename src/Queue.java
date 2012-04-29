@@ -9,35 +9,34 @@ import java.util.LinkedList;
 
 public class Queue {
     
+    //Llista on s'emmagatzemen els paquets
     private LinkedList<String> queue;
     private long size;
-    private Scheduler scheduler;
     
-    public Queue(Scheduler sch){
-        this.queue = new LinkedList<>();
+    //Iniciaitzem amb mida per defecte si no s'especifica tamany de cua
+    public Queue(){
+        this.queue = new LinkedList<String>();
         this.size = Long.MAX_VALUE;
-        this.scheduler = sch;
     }
-    
-    public Queue(long s, Scheduler sch){
-        this.queue = new LinkedList<>();
-        this.size = s;
-        this.scheduler = sch;
-      
+    //Inicialitem amb la mida que ens diguin
+    public Queue(long s){
+        this.queue = new LinkedList<String>();
+        this.size = s;     
      }
-    
-    public void nextPacket() {
-        this.scheduler.sendToSink(queue.pollFirst());
+    //Pasa el paquet al scheduler per a que ho envii a la Sink
+    public String nextPacket() {
+        return this.queue.pollFirst();
     }
-    
+    //Retorna el numero de elements en cua
     public long getNumel(){
         return this.queue.size();
     }
-    
+          
+    //Retorna el tamany total de la cua
     public long getSize(){
         return this.size;
     }
-    
+    //Afegeix un paquet a la cua
     public void addPacket(String s){
         this.queue.add(s);
     }
